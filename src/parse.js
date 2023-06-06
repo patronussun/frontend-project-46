@@ -1,12 +1,6 @@
 import { readFileSync } from 'fs';
 import _ from 'lodash';
 
-// const parseFile = (filepath) => {
-//   const rawData = readFileSync(filepath);
-//   const object = JSON.parse(rawData);
-//   return object;
-// };
-
 const parseFile = (filepath) => {
   const rawData = readFileSync(filepath);
   const object = JSON.parse(rawData);
@@ -16,9 +10,7 @@ const parseFile = (filepath) => {
 const compare = () => {
   const result = ['{'];
   const object1 = parseFile('__fixtures__/file1.json');
-  console.log('object1', object1);
   const object2 = parseFile('__fixtures__/file2.json');
-  console.log('object2', object2);
   const keys1 = Object.keys(object1);
   const keys2 = Object.keys(object2);
 
@@ -46,4 +38,4 @@ const compare = () => {
   return result.join('\n');
 };
 
-console.log(compare());
+export default compare;
