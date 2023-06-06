@@ -7,10 +7,10 @@ const parseFile = (filepath) => {
   return object;
 };
 
-const compare = () => {
+const compare = (filepath1, filepath2) => {
   const result = ['{'];
-  const object1 = parseFile('__fixtures__/file1.json');
-  const object2 = parseFile('__fixtures__/file2.json');
+  const object1 = parseFile(filepath1);
+  const object2 = parseFile(filepath2);
   const keys1 = Object.keys(object1);
   const keys2 = Object.keys(object2);
 
