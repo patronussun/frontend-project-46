@@ -16,31 +16,34 @@ const parseFile = (filepath) => {
 const compare = () => {
   const result = [];
   const object1 = parseFile('__fixtures__/file1.json');
+  console.log('object1', object1);
   const object2 = parseFile('__fixtures__/file2.json');
-  const sortedKeys1 = _.sortBy(Object.keys(object1));
-  const sortedKeys2 = _.sortBy(Object.keys(object2));
+  console.log('object2', object2);
+  const keys1 = Object.keys(object1);
+  const keys2 = Object.keys(object2);
 
-  for (const key of sortedKeys1) {
-    if (sortedKeys2.includes(key)) {
-      if (object1.key === object2.key) {
-        result.push(`  ${key}: ${object1.key}`);
-      }
-      if (object1.key !== object2.key) {
-        result.push(`- ${key}: ${object1.key}`);
-        result.push(`+ ${key}: ${object2.key}`);
-      }
-    }
-    else if (!sortedKeys2.includes(key)) {
-      result.push(`- ${key}: ${object1.key}`);
-    }
-  }
+  const sortedKeys = _.sortBy(_.union(keys1, keys2));
 
-  for (const key of sortedKeys2) {
-    if (!sortedKeys1.includes(key)) {
-      result.push(`+ ${key}: ${object2.key}`);
+  sortedKeys.forEach((key) => {
+    if (keys1.includes(key) && keys2.includes(key) && object1[key] === object2[key]) {
+      return console.log(`  ${key}: ${object1[key]}`);
     }
-  }
-  console.log(result);
+
+    if (!keys2.includes(key)) {
+      console.log(`- ${key}: ${object1[key]}`);
+    }
+
+    if (!keys1.includes(key)) {
+      console.log(`+ ${key}: ${object2[key]}`);
+    }
+
+    if (keys1.includes(key) && keys2.includes(key) && object1[key] !== object2[key]) {
+      console.log(`- ${key}: ${object1[key]}`);
+      console.log(`+ ${key}: ${object2[key]}`);
+    }
+  });
+
+  console.log(result.join('\n'));
 };
 
 compare();
