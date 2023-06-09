@@ -1,8 +1,12 @@
 import { readFileSync } from 'fs';
 import _ from 'lodash';
+import path from 'path';
 
 const parseFile = (filepath) => {
-  const rawData = readFileSync(filepath);
+  const current = process.cwd();
+
+  const rawData = filepath.startsWith('/') ? readFileSync(filepath) : readFileSync(path.resolve(current, filepath));
+
   const object = JSON.parse(rawData);
   return object;
 };
