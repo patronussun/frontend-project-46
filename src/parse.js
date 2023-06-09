@@ -42,15 +42,15 @@ const joinResult = (coll) => {
   const result = coll.map((elem) => {
     switch (elem.type) {
       case 'removed':
-        return `- ${elem.key}: ${elem.value}`;
+        return ` - ${elem.key}: ${elem.value}`;
       case 'added':
-        return `+ ${elem.key}: ${elem.value}`;
+        return ` + ${elem.key}: ${elem.value}`;
       default:
-        return `  ${elem.key}: ${elem.value}`;
+        return `   ${elem.key}: ${elem.value}`;
     }
   });
 
-  return `{ \n${result.join('\n')}\n}`;
+  return `{\n${result.join('\n')}\n}`;
 };
 
 const genDiff = (filepath1, filepath2) => {
