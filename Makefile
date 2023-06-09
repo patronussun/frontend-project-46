@@ -6,3 +6,6 @@ publish:
 
 lint:
 	npx eslint .
+
+test-coverage:
+	npm run coverage

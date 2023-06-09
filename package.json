@@ -5,7 +5,7 @@
   "description": "[![Actions Status](https://github.com/patronussun/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/patronussun/frontend-project-46/actions)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest"
   },
   "author": "Maria Musalitina",
   "license": "ISC",
@@ -17,6 +17,10 @@
     "eslint": "^8.41.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
     "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
   }
 }

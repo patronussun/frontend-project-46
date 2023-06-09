@@ -1,3 +1,7 @@
+plugins:
+  # https://github.com/jest-community/eslint-plugin-jest
+  - jest
+  
 env:
   node: true
 extends: airbnb-base
