@@ -46,11 +46,11 @@ const joinResult = (coll) => {
   const result = coll.map((elem) => {
     switch (elem.type) {
       case 'removed':
-        return ` - ${elem.key}: ${elem.value}`;
+        return `  - ${elem.key}: ${elem.value}`;
       case 'added':
-        return ` + ${elem.key}: ${elem.value}`;
+        return `  + ${elem.key}: ${elem.value}`;
       default:
-        return `   ${elem.key}: ${elem.value}`;
+        return `    ${elem.key}: ${elem.value}`;
     }
   });
 
