@@ -4,7 +4,9 @@ plugins:
   
 env:
   node: true
-extends: airbnb-base
+extends: 
+  - airbnb-base
+  - plugin:jest/recommended
 overrides: []
 parserOptions:
   ecmaVersion: latest

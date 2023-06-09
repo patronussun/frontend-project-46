@@ -5,7 +5,7 @@
   "description": "[![Actions Status](https://github.com/patronussun/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/patronussun/frontend-project-46/actions)",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest"
+    "test": "jest"
   },
   "author": "Maria Musalitina",
   "license": "ISC",
