@@ -1,14 +1,21 @@
 import { readFileSync } from 'fs';
 import _ from 'lodash';
 import path from 'path';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import yaml from 'js-yaml';
 
 const parseFile = (filepath) => {
   const current = process.cwd();
-
   const rawData = readFileSync(path.resolve(current, filepath));
+  const type = path.extname(filepath).toLowerCase();
 
-  const object = JSON.parse(rawData);
-  return object;
+  switch (type) {
+    case '.json': return JSON.parse(rawData);
+    case '.yml': return yaml.load(rawData);
+    case '.yaml': return yaml.load(rawData);
+
+    default: return 'wrong format';
+  }
 };
 
 const compare = (filepath1, filepath2) => {
