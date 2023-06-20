@@ -18,18 +18,21 @@ const parseFile = (filepath) => {
   }
 };
 
-const compare = (filepath1, filepath2) => {
+const compare = (object1, object2) => {
   const result = [];
-  const object1 = parseFile(filepath1);
-  const object2 = parseFile(filepath2);
   const keys1 = Object.keys(object1);
   const keys2 = Object.keys(object2);
 
   const sortedKeys = _.sortBy(_.union(keys1, keys2));
 
   sortedKeys.forEach((key) => {
-    if (keys1.includes(key) && keys2.includes(key) && object1[key] === object2[key]) {
-      result.push({ key, value: object1[key], type: 'old' });
+    if (keys1.includes(key) && keys2.includes(key)) {
+      if (typeof object1[key] === 'object' && typeof object2[key] === 'object') {
+        result.push(compare(object1[key], object2[key]));
+      }
+      if (object1[key] === object2[key]) {
+        result.push({ key, value: object1[key], type: 'old' });
+      }
     }
 
     if (!keys2.includes(key)) {
@@ -65,7 +68,9 @@ const joinResult = (coll) => {
 };
 
 const genDiff = (filepath1, filepath2) => {
-  const coll = compare(filepath1, filepath2);
+  const object1 = parseFile(filepath1);
+  const object2 = parseFile(filepath2);
+  const coll = compare(object1, object2);
   const result = joinResult(coll);
   return result;
 };
